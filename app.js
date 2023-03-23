@@ -38,6 +38,19 @@ app.get('/contacts', (req, res) => {
     res.render('contacts');
 });
 
+app.get('/students', (req, res) => {
+
+    connection.execute('SELECT * FROM students', (err, students) => {
+        if (err) {
+            res.json({
+                message: err
+            });
+        } else {
+            res.render('students', { students });
+        }
+    });
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
